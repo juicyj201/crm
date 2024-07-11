@@ -31,3 +31,5 @@ jobs:
       run: dotnet build --no-restore ${{ matrix.api }}
     - name: Test
       run: dotnet test --no-build --verbosity normal ${{ matrix.api }}
+    - name: Deploy
+      run: dotnet publish ${{ matrix.api }}
