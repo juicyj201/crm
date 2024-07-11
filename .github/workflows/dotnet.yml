@@ -11,18 +11,23 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['8.0.x']
+        api: ['/API/API.csproj']
 
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.303
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Display dotnet version
+      run: dotnet --version
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ matrix.api }}
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ${{ matrix.api }}
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal ${{ matrix.api }}
