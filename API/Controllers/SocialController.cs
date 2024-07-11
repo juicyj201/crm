@@ -47,6 +47,7 @@ namespace API.Controllers
             return "TIKTOK";
         }
 
+        /**
         [HttpGet("Auth/Tiktok")]
         public async Task<ActionResult<string>> AuthTiktok(){
             #region task 1
@@ -85,6 +86,8 @@ namespace API.Controllers
             return helper.TiktokScope();
             #endregion
         }
+        #endregion
+        **/
         #endregion
     }
 }
